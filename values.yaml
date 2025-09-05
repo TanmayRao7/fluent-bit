@@ -418,7 +418,7 @@ config:
         Match kube.*
         Host grafana-stack-loki-distributor.loki.svc.cluster.local
         Port 3100
-        Labels {job="fluentbit"}
+        Labels job="fluentbit"
         remove_keys time,kubernetes,stream
 
   ## https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-mode/upstream-servers
