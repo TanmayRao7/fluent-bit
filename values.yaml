@@ -419,7 +419,7 @@ config:
         Host grafana-stack-loki-distributor.loki.svc.cluster.local:3100
         Port 3100
         Labels {job="fluentbit"}
-        RemoveKeys time,kubernetes,stream
+        remove_keys time,kubernetes,stream
 
   ## https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-mode/upstream-servers
   ## This configuration is deprecated, please use `extraFiles` instead.
