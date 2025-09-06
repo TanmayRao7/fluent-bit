@@ -399,7 +399,7 @@ config:
         Tag kube.*
         Mem_Buf_Limit 5MB
         Skip_Long_Lines On
-        Multiline.Parser java
+        Parser docker
 
   ## https://docs.fluentbit.io/manual/pipeline/filters
   filters: |
@@ -410,6 +410,11 @@ config:
         Keep_Log Off
         K8S-Logging.Parser On
         K8S-Logging.Exclude On
+    [FILTER]
+        Name        multiline
+        Match       kube.*
+        multiline.key_content log
+        multiline.parser      java_stack_parse
 
   ## https://docs.fluentbit.io/manual/pipeline/outputs
   outputs: |
@@ -433,6 +438,13 @@ config:
         Time_Keep Off
         Time_Key time
         Time_Format %Y-%m-%dT%H:%M:%S.%L
+    [MULTILINE_PARSER]
+        name   java_stack_parser
+        type   regex
+        flush_timeout 1000
+        key_content   log
+        rule      "start_state"    "/^\d+\-\d+\-\d+ \d+:\d+:\d+\.\d+ .*\[.*\] (INFO|ERROR|WARN) .* - .*$/i" "cont"
+        rule      "cont"           "/^\s+at .*$/" "cont"
 
   # This allows adding more files with arbitrary filenames to /fluent-bit/etc/conf by providing key/value pairs.
   # The key becomes the filename, the value becomes the file content.
