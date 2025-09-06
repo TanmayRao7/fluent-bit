@@ -416,7 +416,7 @@ config:
     [OUTPUT]
         Name loki
         Match kube.*
-        Host grafana-stack-loki-distributor.loki.svc.cluster.local
+        Host grafana-stack-loki-distributor.grafana.svc.cluster.local
         Port 3100
         Labels job="fluentbit"
         remove_keys time,kubernetes,stream
