@@ -414,7 +414,7 @@ config:
         Name        multiline
         Match       kube.*
         multiline.key_content log
-        multiline.parser      java_stack_parse
+        multiline.parser      java_stack_parser
 
   ## https://docs.fluentbit.io/manual/pipeline/outputs
   outputs: |
