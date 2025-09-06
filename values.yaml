@@ -399,7 +399,7 @@ config:
         Tag kube.*
         Mem_Buf_Limit 5MB
         Skip_Long_Lines On
-        Multiline.Parser docker, cri
+        Multiline.Parser java
 
   ## https://docs.fluentbit.io/manual/pipeline/filters
   filters: |
